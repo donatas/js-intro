@@ -1,0 +1,25 @@
+{
+  "name": "ktu-js",
+  "version": "0.0.0",
+  "description": "KTU JS.",
+  "scripts": {
+    "server": "node ./server-based/server.js",
+    "client": "node ./client-based/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/donatasdwix/ktu-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/donatasdwix/ktu-js/issues"
+  },
+  "homepage": "https://github.com/donatasdwix/ktu-js",
+  "dependencies": {
+    "express": "^4.9.5",
+    "mustache": "^0.8.2",
+    "body-parser": "^1.9.0"
+  }
+}

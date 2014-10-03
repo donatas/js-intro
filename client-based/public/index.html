@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task list</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <script src="jquery.js"></script>
+    <style>
+        .notice {
+            color: green;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function showThanks() {
+            document.querySelector('.notice').style.display = 'block';
+        }
+
+        function renderTask(task) {
+            $('#task-list').append('<li>' + task.name + '</li>');
+        }
+
+        function loadTasks() {
+            $.get('/tasks', function (res) {
+                res.forEach(renderTask);
+            });
+        }
+
+        function onSubmit(event) {
+            event.preventDefault();
+            $.post('/tasks', {name: $('#name').val()}, function (result) {
+                renderTask(result);
+            });
+            showThanks();
+        }
+
+        loadTasks();
+        $(document).ready(function () {
+            $('#task-form').submit(onSubmit);
+        });
+
+
+    </script>
+
+</head>
+<body>
+    <div id="tasks">
+        <h2>My tasks</h2>
+        <ul id="task-list"></ul>
+
+        <div id="task-form-container">
+            <div class="notice hidden">Task added!</div>
+
+            <h3>New Task</h3>
+
+            <form id="task-form">
+                <div class="form-row">
+                    <label for="name">Enter task:</label>
+                    <input id="name" type="text" name="task">
+                </div>
+
+                <div class="form-row">
+                    <input type="submit">
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</body>
+</html>

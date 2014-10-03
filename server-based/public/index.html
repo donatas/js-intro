@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task list</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <style>
+        .notice {
+            color: green;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="tasks">
+    <h2>My tasks</h2>
+    <ul id="task-list">
+        {{#tasks}}
+            <li>{{ name }}</li>
+        {{/tasks}}
+    </ul>
+
+    <div id="task-form">
+        {{ #newTask }}<div class="notice">Task added!</div>{{ /newTask }}
+
+        <h3>New Task</h3>
+
+        <form method="post">
+            <div class="form-row">
+                <label for="name">Enter task:</label>
+                <input id="name" type="text" name="task">
+            </div>
+
+            <div class="form-row">
+                <input type="submit">
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>
