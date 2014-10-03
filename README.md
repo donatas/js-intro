@@ -1,1 +1,1 @@
-KTU JS
+KTU JS.
