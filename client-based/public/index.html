@@ -18,29 +18,34 @@
         }
 
         function renderTask(task) {
-            $('#task-list').append('<li>' + task.name + '</li>');
+            var newListItem = document.createElement('li');
+            newListItem.innerHTML = task.name;
+            document.getElementById('task-list').appendChild(newListItem);
         }
 
         function loadTasks() {
-            $.get('/tasks', function (res) {
-                res.forEach(renderTask);
+            $.get('/tasks', function (tasks) {
+                tasks.forEach(function (task) {
+                    renderTask(task);
+                });
             });
         }
 
-        function onSubmit(event) {
-            event.preventDefault();
-            $.post('/tasks', {name: $('#name').val()}, function (result) {
-                renderTask(result);
+        function createNewTask(event) {
+            event.preventDefault(); // neperkrauti puslapio
+            var task = {name: document.getElementById('name').value};
+            
+            $.post('/tasks', task, function (task) {
+                renderTask(task);
+                showThanks();
             });
-            showThanks();
         }
 
         loadTasks();
+
         $(document).ready(function () {
-            $('#task-form').submit(onSubmit);
+            document.getElementById('task-form').onsubmit = createNewTask;
         });
-
-
     </script>
 
 </head>
