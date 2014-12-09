@@ -9,12 +9,12 @@
             color: green;
         }
         .hidden {
-            display: none;
+            opacity: 0;
         }
     </style>
     <script>
         function showThanks() {
-            document.querySelector('.notice').style.display = 'block';
+            $('.notice').animate({opacity: 1}, 1000);
         }
 
         function renderTask(task) {
